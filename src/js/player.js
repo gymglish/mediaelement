@@ -1571,11 +1571,14 @@ class MediaElementPlayer {
 
 		loading.style.display = 'none'; // start out hidden
 		loading.className = `${t.options.classPrefix}overlay ${t.options.classPrefix}layer`;
+		const loadingIcon = 'icon-loading-spinner';
+		let svgContent = t.media.options.svgIcons ? t.media.options.svgIcons[loadingIcon] : undefined;
+		svgContent = svgContent || `<use xlink:href="${t.media.options.iconSprite}#${loadingIcon}"></use>`
 		loading.innerHTML =
 			`<div class="${t.options.classPrefix}overlay-loading">` +
 			`<div class="${t.options.classPrefix}overlay-loading-bg-img">
 					<svg xmlns="http://www.w3.org/2000/svg">
-						<use xlink:href="${t.media.options.iconSprite}#icon-loading-spinner"></use>
+						${svgContent}
 					</svg>
 				</div>` +
 			`</div>`;
@@ -1587,7 +1590,7 @@ class MediaElementPlayer {
 		layers.appendChild(error);
 
 		bigPlay.className = `${t.options.classPrefix}overlay ${t.options.classPrefix}layer ${t.options.classPrefix}overlay-play`;
-		bigPlay.innerHTML = generateControlButton(t.id, i18n.t('mejs.play'), i18n.t('mejs.play'), `${t.media.options.iconSprite}`,['icon-overlay-play'], `${t.options.classPrefix}`, `${t.options.classPrefix}overlay-button`, '', false);
+		bigPlay.innerHTML = generateControlButton(t.id, i18n.t('mejs.play'), i18n.t('mejs.play'), `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-overlay-play'], `${t.options.classPrefix}`, `${t.options.classPrefix}overlay-button`, '', false);
 
 		bigPlay.addEventListener('click', () => {
 			// Removed 'touchstart' due issues on Samsung Android devices where a tap on bigPlay

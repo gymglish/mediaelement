@@ -4889,7 +4889,11 @@ var MediaElementPlayer = function () {
 
 			loading.style.display = 'none';
 			loading.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer';
-			loading.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-loading">' + ('<div class="' + t.options.classPrefix + 'overlay-loading-bg-img">\n\t\t\t\t\t<svg xmlns="http://www.w3.org/2000/svg">\n\t\t\t\t\t\t<use xlink:href="' + t.media.options.iconSprite + '#icon-loading-spinner"></use>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>') + '</div>';
+
+			const loadingIcon = 'icon-loading-spinner';
+			let svgContent = t.media.options.svgIcons ? t.media.options.svgIcons[loadingIcon] : undefined;
+			svgContent = svgContent || `<use xlink:href="' + t.media.options.iconSprite + '#icon-loading-spinner">`
+			loading.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-loading">' + ('<div class="' + t.options.classPrefix + 'overlay-loading-bg-img">\n\t\t\t\t\t<svg xmlns="http://www.w3.org/2000/svg">\n\t\t\t\t\t\t' + svgContent + '\n\t\t\t\t\t</svg>\n\t\t\t\t</div>') + '</div>';
 			layers.appendChild(loading);
 
 			error.style.display = 'none';

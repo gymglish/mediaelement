@@ -48,7 +48,7 @@ Object.assign(MediaElementPlayer.prototype, {
 		;
 
 		play.className = `${t.options.classPrefix}button ${t.options.classPrefix}playpause-button ${t.options.classPrefix}play`;
-		play.innerHTML = generateControlButton(t.id, pauseTitle, playTitle, `${t.media.options.iconSprite}`, ['icon-play', 'icon-pause', 'icon-replay'], `${t.options.classPrefix}`);
+		play.innerHTML = generateControlButton(t.id, pauseTitle, playTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-play', 'icon-pause', 'icon-replay'], `${t.options.classPrefix}`);
 		play.addEventListener('click', () => {
 			if (t.paused) {
 				t.play();

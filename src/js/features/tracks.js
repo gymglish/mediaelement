@@ -91,7 +91,7 @@ Object.assign(MediaElementPlayer.prototype, {
     player.captionsButton = document.createElement('div');
     player.captionsButton.className = `${t.options.classPrefix}button ${t.options.classPrefix}captions-button`;
     player.captionsButton.innerHTML =
-      generateControlButton(t.id, tracksTitle, tracksTitle, `${t.media.options.iconSprite}`, ['icon-captions'], `${t.options.classPrefix}`) +
+      generateControlButton(t.id, tracksTitle, tracksTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-captions'], `${t.options.classPrefix}`) +
       `<div class="${t.options.classPrefix}captions-selector ${t.options.classPrefix}offscreen">` +
         `<ul class="${t.options.classPrefix}captions-selector-list">` +
           `<li class="${t.options.classPrefix}captions-selector-list-item">` +
@@ -112,7 +112,7 @@ Object.assign(MediaElementPlayer.prototype, {
     player.chaptersButton = document.createElement('div');
     player.chaptersButton.className = `${t.options.classPrefix}button ${t.options.classPrefix}chapters-button`;
     player.chaptersButton.innerHTML =
-      generateControlButton(t.id, chaptersTitle, chaptersTitle, `${t.media.options.iconSprite}`, ['icon-chapters'], `${t.options.classPrefix}`) +
+      generateControlButton(t.id, chaptersTitle, chaptersTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-chapters'], `${t.options.classPrefix}`) +
       `<div class="${t.options.classPrefix}chapters-selector ${t.options.classPrefix}offscreen">` +
         `<ul class="${t.options.classPrefix}chapters-selector-list"></ul>` +
       `</div>`;
