@@ -77,8 +77,8 @@ Object.assign(MediaElementPlayer.prototype, {
 
 		mute.className = `${t.options.classPrefix}button ${t.options.classPrefix}volume-button ${t.options.classPrefix}mute`;
 		mute.innerHTML = mode === 'horizontal' ?
-			generateControlButton(t.id, muteText, muteText, `${t.media.options.iconSprite}`, ['icon-mute', 'icon-unmute'], `${t.options.classPrefix}`, '', `${t.options.classPrefix}horizontal-volume-slider`) :
-			generateControlButton(t.id, muteText, muteText, `${t.media.options.iconSprite}`, ['icon-mute', 'icon-unmute'], `${t.options.classPrefix}`, '', `${t.options.classPrefix}volume-slider`) +
+			generateControlButton(t.id, muteText, muteText, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-mute', 'icon-unmute'], `${t.options.classPrefix}`, '', `${t.options.classPrefix}horizontal-volume-slider`) :
+			generateControlButton(t.id, muteText, muteText, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-mute', 'icon-unmute'], `${t.options.classPrefix}`, '', `${t.options.classPrefix}volume-slider`) +
 			`<a class="${t.options.classPrefix}volume-slider" ` +
 				`aria-label="${i18n.t('mejs.volume-slider')}" aria-valuemin="0" aria-valuemax="100" role="slider" ` +
 				`aria-orientation="vertical">` +

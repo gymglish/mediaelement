@@ -87,7 +87,7 @@ Object.assign(MediaElementPlayer.prototype, {
 			fullscreenBtn = document.createElement('div')
 		;
 		fullscreenBtn.className = `${t.options.classPrefix}button ${t.options.classPrefix}fullscreen-button`;
-		fullscreenBtn.innerHTML = generateControlButton(t.id, fullscreenTitle, fullscreenTitle, `${t.media.options.iconSprite}`, ['icon-fullscreen', 'icon-unfullscreen'], `${t.options.classPrefix}`);
+		fullscreenBtn.innerHTML = generateControlButton(t.id, fullscreenTitle, fullscreenTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-fullscreen', 'icon-unfullscreen'], `${t.options.classPrefix}`);
 		t.addControlElement(fullscreenBtn, 'fullscreen');
 
 		fullscreenBtn.addEventListener('click', () => {
