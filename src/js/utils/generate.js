@@ -15,7 +15,7 @@ import mejs from '../core/mejs';
  * @param {String} ariaDescribedby id for aria-describedby attribute
  * @return {String}
  */
-export function generateControlButton (playerId, ariaLabel, title, iconSprite, icons, classPrefix, buttonClass = null, ariaDescribedby= '', ariaPressed = null) {
+export function generateControlButton (playerId, ariaLabel, title, iconSprite, svgIcons, icons, classPrefix, buttonClass = null, ariaDescribedby= '', ariaPressed = null) {
 
 	if (typeof playerId !== 'string') {
 		throw new Error('`ariaControls` argument must be a string');
@@ -44,10 +44,11 @@ export function generateControlButton (playerId, ariaLabel, title, iconSprite, i
 	const ariaDescribedbyAttr = ariaDescribedby !== '' ? `aria-describedby="${ariaDescribedby}" ` : '';
 
 	const ariaPressedAttr = ariaPressed !== null ?  `aria-pressed="${ariaPressed}"` : '';
-
 	const iconHtml = icons.map(icon => {
+		let svgContent = svgIcons ? svgIcons[icon] : undefined;
+		svgContent = svgContent || `<use xlink:href="${iconSprite}#${icon}"></use>`
 		return `<svg xmlns="http://www.w3.org/2000/svg" id="${playerId}-${icon}" class="${classPrefix}${icon}" aria-hidden="true" focusable="false">
-				<use xlink:href="${iconSprite}#${icon}"></use>
+				${svgContent}
 			</svg>
 `	})
 
