@@ -1317,7 +1317,7 @@ Object.assign(_player2.default.prototype, {
 		    fullscreenTitle = (0, _general.isString)(t.options.fullscreenText) ? t.options.fullscreenText : _i18n2.default.t('mejs.fullscreen'),
 		    fullscreenBtn = _document2.default.createElement('div');
 		fullscreenBtn.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'fullscreen-button';
-		fullscreenBtn.innerHTML = (0, _generate.generateControlButton)(t.id, fullscreenTitle, fullscreenTitle, '' + t.media.options.iconSprite, ['icon-fullscreen', 'icon-unfullscreen'], '' + t.options.classPrefix);
+		fullscreenBtn.innerHTML = (0, _generate.generateControlButton)(t.id, fullscreenTitle, fullscreenTitle, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-fullscreen', 'icon-unfullscreen'], '' + t.options.classPrefix);
 		t.addControlElement(fullscreenBtn, 'fullscreen');
 
 		fullscreenBtn.addEventListener('click', function () {
@@ -1593,7 +1593,7 @@ Object.assign(_player2.default.prototype, {
 		    play = _document2.default.createElement('div');
 
 		play.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'playpause-button ' + t.options.classPrefix + 'play';
-		play.innerHTML = (0, _generate.generateControlButton)(t.id, pauseTitle, playTitle, '' + t.media.options.iconSprite, ['icon-play', 'icon-pause', 'icon-replay'], '' + t.options.classPrefix);
+		play.innerHTML = (0, _generate.generateControlButton)(t.id, pauseTitle, playTitle, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-play', 'icon-pause', 'icon-replay'], '' + t.options.classPrefix);
 		play.addEventListener('click', function () {
 			if (t.paused) {
 				t.play();
@@ -2404,7 +2404,7 @@ Object.assign(_player2.default.prototype, {
 
     player.captionsButton = _document2.default.createElement('div');
     player.captionsButton.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'captions-button';
-    player.captionsButton.innerHTML = (0, _generate.generateControlButton)(t.id, tracksTitle, tracksTitle, '' + t.media.options.iconSprite, ['icon-captions'], '' + t.options.classPrefix) + ('<div class="' + t.options.classPrefix + 'captions-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'captions-selector-list">') + ('<li class="' + t.options.classPrefix + 'captions-selector-list-item">') + ('<input type="radio" class="' + t.options.classPrefix + 'captions-selector-input" ') + ('name="' + player.id + '_captions" id="' + player.id + '_captions_none" ') + 'value="none" checked disabled>' + ('<label class="' + t.options.classPrefix + 'captions-selector-label ') + (t.options.classPrefix + 'captions-selected" ') + ('for="' + player.id + '_captions_none">' + _i18n2.default.t('mejs.none') + '</label>') + '</li>' + '</ul>' + '</div>';
+    player.captionsButton.innerHTML = (0, _generate.generateControlButton)(t.id, tracksTitle, tracksTitle, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-captions'], '' + t.options.classPrefix) + ('<div class="' + t.options.classPrefix + 'captions-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'captions-selector-list">') + ('<li class="' + t.options.classPrefix + 'captions-selector-list-item">') + ('<input type="radio" class="' + t.options.classPrefix + 'captions-selector-input" ') + ('name="' + player.id + '_captions" id="' + player.id + '_captions_none" ') + 'value="none" checked disabled>' + ('<label class="' + t.options.classPrefix + 'captions-selector-label ') + (t.options.classPrefix + 'captions-selected" ') + ('for="' + player.id + '_captions_none">' + _i18n2.default.t('mejs.none') + '</label>') + '</li>' + '</ul>' + '</div>';
 
     t.addControlElement(player.captionsButton, 'tracks');
 
@@ -2412,7 +2412,7 @@ Object.assign(_player2.default.prototype, {
 
     player.chaptersButton = _document2.default.createElement('div');
     player.chaptersButton.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'chapters-button';
-    player.chaptersButton.innerHTML = (0, _generate.generateControlButton)(t.id, chaptersTitle, chaptersTitle, '' + t.media.options.iconSprite, ['icon-chapters'], '' + t.options.classPrefix) + ('<div class="' + t.options.classPrefix + 'chapters-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'chapters-selector-list"></ul>') + '</div>';
+    player.chaptersButton.innerHTML = (0, _generate.generateControlButton)(t.id, chaptersTitle, chaptersTitle, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-chapters'], '' + t.options.classPrefix) + ('<div class="' + t.options.classPrefix + 'chapters-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'chapters-selector-list"></ul>') + '</div>';
 
     var subtitles = t.getSubtitles();
     var chapters = t.getChapters();
@@ -3051,7 +3051,7 @@ Object.assign(_player2.default.prototype, {
 		    mute = _document2.default.createElement('div');
 
 		mute.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'volume-button ' + t.options.classPrefix + 'mute';
-		mute.innerHTML = mode === 'horizontal' ? (0, _generate.generateControlButton)(t.id, muteText, muteText, '' + t.media.options.iconSprite, ['icon-mute', 'icon-unmute'], '' + t.options.classPrefix, '', t.options.classPrefix + 'horizontal-volume-slider') : (0, _generate.generateControlButton)(t.id, muteText, muteText, '' + t.media.options.iconSprite, ['icon-mute', 'icon-unmute'], '' + t.options.classPrefix, '', t.options.classPrefix + 'volume-slider') + ('<a class="' + t.options.classPrefix + 'volume-slider" ') + ('aria-label="' + _i18n2.default.t('mejs.volume-slider') + '" aria-valuemin="0" aria-valuemax="100" role="slider" ') + 'aria-orientation="vertical">' + ('<span class="' + t.options.classPrefix + 'offscreen" id="' + t.options.classPrefix + 'volume-slider">' + volumeControlText + '</span>') + ('<div class="' + t.options.classPrefix + 'volume-total">') + ('<div class="' + t.options.classPrefix + 'volume-current"></div>') + ('<div class="' + t.options.classPrefix + 'volume-handle"></div>') + '</div>' + '</a>';
+		mute.innerHTML = mode === 'horizontal' ? (0, _generate.generateControlButton)(t.id, muteText, muteText, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-mute', 'icon-unmute'], '' + t.options.classPrefix, '', t.options.classPrefix + 'horizontal-volume-slider') : (0, _generate.generateControlButton)(t.id, muteText, muteText, '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-mute', 'icon-unmute'], '' + t.options.classPrefix, '', t.options.classPrefix + 'volume-slider') + ('<a class="' + t.options.classPrefix + 'volume-slider" ') + ('aria-label="' + _i18n2.default.t('mejs.volume-slider') + '" aria-valuemin="0" aria-valuemax="100" role="slider" ') + 'aria-orientation="vertical">' + ('<span class="' + t.options.classPrefix + 'offscreen" id="' + t.options.classPrefix + 'volume-slider">' + volumeControlText + '</span>') + ('<div class="' + t.options.classPrefix + 'volume-total">') + ('<div class="' + t.options.classPrefix + 'volume-current"></div>') + ('<div class="' + t.options.classPrefix + 'volume-handle"></div>') + '</div>' + '</a>';
 
 		t.addControlElement(mute, 'volume');
 
@@ -4889,10 +4889,9 @@ var MediaElementPlayer = function () {
 
 			loading.style.display = 'none';
 			loading.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer';
-
-			const loadingIcon = 'icon-loading-spinner';
-			let svgContent = t.media.options.svgIcons ? t.media.options.svgIcons[loadingIcon] : undefined;
-			svgContent = svgContent || `<use xlink:href="' + t.media.options.iconSprite + '#icon-loading-spinner">`
+			var loadingIcon = 'icon-loading-spinner';
+			var svgContent = t.media.options.svgIcons ? t.media.options.svgIcons[loadingIcon] : undefined;
+			svgContent = svgContent || '<use xlink:href="' + t.media.options.iconSprite + '#' + loadingIcon + '"></use>';
 			loading.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-loading">' + ('<div class="' + t.options.classPrefix + 'overlay-loading-bg-img">\n\t\t\t\t\t<svg xmlns="http://www.w3.org/2000/svg">\n\t\t\t\t\t\t' + svgContent + '\n\t\t\t\t\t</svg>\n\t\t\t\t</div>') + '</div>';
 			layers.appendChild(loading);
 
@@ -4902,7 +4901,7 @@ var MediaElementPlayer = function () {
 			layers.appendChild(error);
 
 			bigPlay.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer ' + t.options.classPrefix + 'overlay-play';
-			bigPlay.innerHTML = (0, _generate.generateControlButton)(t.id, _i18n2.default.t('mejs.play'), _i18n2.default.t('mejs.play'), '' + t.media.options.iconSprite, ['icon-overlay-play'], '' + t.options.classPrefix, t.options.classPrefix + 'overlay-button', '', false);
+			bigPlay.innerHTML = (0, _generate.generateControlButton)(t.id, _i18n2.default.t('mejs.play'), _i18n2.default.t('mejs.play'), '' + t.media.options.iconSprite, t.media.options.svgIcons, ['icon-overlay-play'], '' + t.options.classPrefix, t.options.classPrefix + 'overlay-button', '', false);
 
 			bigPlay.addEventListener('click', function () {
 				if (t.options.clickToPlayPause) {
@@ -7329,10 +7328,10 @@ var _mejs2 = _interopRequireDefault(_mejs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function generateControlButton(playerId, ariaLabel, title, iconSprite, icons, classPrefix) {
-	var buttonClass = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
-	var ariaDescribedby = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : '';
-	var ariaPressed = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : null;
+function generateControlButton(playerId, ariaLabel, title, iconSprite, svgIcons, icons, classPrefix) {
+	var buttonClass = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
+	var ariaDescribedby = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : '';
+	var ariaPressed = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : null;
 
 
 	if (typeof playerId !== 'string') {
@@ -7362,9 +7361,10 @@ function generateControlButton(playerId, ariaLabel, title, iconSprite, icons, cl
 	var ariaDescribedbyAttr = ariaDescribedby !== '' ? 'aria-describedby="' + ariaDescribedby + '" ' : '';
 
 	var ariaPressedAttr = ariaPressed !== null ? 'aria-pressed="' + ariaPressed + '"' : '';
-
 	var iconHtml = icons.map(function (icon) {
-		return '<svg xmlns="http://www.w3.org/2000/svg" id="' + playerId + '-' + icon + '" class="' + classPrefix + icon + '" aria-hidden="true" focusable="false">\n\t\t\t\t<use xlink:href="' + iconSprite + '#' + icon + '"></use>\n\t\t\t</svg>\n';
+		var svgContent = svgIcons ? svgIcons[icon] : undefined;
+		svgContent = svgContent || '<use xlink:href="' + iconSprite + '#' + icon + '"></use>';
+		return '<svg xmlns="http://www.w3.org/2000/svg" id="' + playerId + '-' + icon + '" class="' + classPrefix + icon + '" aria-hidden="true" focusable="false">\n\t\t\t\t' + svgContent + '\n\t\t\t</svg>\n';
 	});
 
 	return '<button ' + className + ' type="button" aria-controls="' + playerId + '" title="' + title + '" aria-label="' + ariaLabel + '" ' + ariaDescribedbyAttr + ' ' + ariaPressedAttr + '>\n\t\t\t' + iconHtml.join('') + '\n\t\t</button>';
