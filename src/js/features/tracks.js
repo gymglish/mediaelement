@@ -91,7 +91,7 @@ Object.assign(MediaElementPlayer.prototype, {
     player.captionsButton = document.createElement('div');
     player.captionsButton.className = `${t.options.classPrefix}button ${t.options.classPrefix}captions-button`;
     player.captionsButton.innerHTML =
-      generateControlButton(t.id, tracksTitle, tracksTitle, `${t.media.options.iconSprite}`, ['icon-captions'], `${t.options.classPrefix}`) +
+      generateControlButton(t.id, tracksTitle, tracksTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-captions'], `${t.options.classPrefix}`) +
       `<div class="${t.options.classPrefix}captions-selector ${t.options.classPrefix}offscreen">` +
         `<ul class="${t.options.classPrefix}captions-selector-list">` +
           `<li class="${t.options.classPrefix}captions-selector-list-item">` +
@@ -112,7 +112,7 @@ Object.assign(MediaElementPlayer.prototype, {
     player.chaptersButton = document.createElement('div');
     player.chaptersButton.className = `${t.options.classPrefix}button ${t.options.classPrefix}chapters-button`;
     player.chaptersButton.innerHTML =
-      generateControlButton(t.id, chaptersTitle, chaptersTitle, `${t.media.options.iconSprite}`, ['icon-chapters'], `${t.options.classPrefix}`) +
+      generateControlButton(t.id, chaptersTitle, chaptersTitle, `${t.media.options.iconSprite}`, t.media.options.svgIcons, ['icon-chapters'], `${t.options.classPrefix}`) +
       `<div class="${t.options.classPrefix}chapters-selector ${t.options.classPrefix}offscreen">` +
         `<ul class="${t.options.classPrefix}chapters-selector-list"></ul>` +
       `</div>`;
@@ -147,13 +147,12 @@ Object.assign(MediaElementPlayer.prototype, {
     // if only one language then just make the button a toggle
     if (t.options.toggleCaptionsButtonWhenOnlyOne && subtitles.length === 1) {
       player.captionsButton.classList.add(`${t.options.classPrefix}captions-button-toggle`);
-      player.captionsButton.addEventListener('click', (e) => {
+      player.captionsButton.addEventListener('click', () => {
         let trackId = 'none';
         if (player.selectedTrack === null) {
           trackId = player.getSubtitles()[0].trackId;
         }
-        const keyboard = e.keyCode || e.which;
-        player.setTrack(trackId, (typeof keyboard !== 'undefined'));
+        player.setTrack(trackId);
       });
     } else {
       const
@@ -181,9 +180,8 @@ Object.assign(MediaElementPlayer.prototype, {
           // value is trackId, same as the actual id, and we're using it here
           // because the "none" checkbox doesn't have a trackId
           // to use, but we want to know when "none" is clicked
-          const keyboard = e.keyCode || e.which;
           if (!e.target.disabled) {
-            player.setTrack(this.value, (typeof keyboard !== 'undefined'));
+            player.setTrack(this.value);
           }
         });
       }
@@ -436,9 +434,8 @@ Object.assign(MediaElementPlayer.prototype, {
   /**
    *
    * @param {String} trackId, or "none" to disable captions
-   * @param {Boolean} setByKeyboard
    */
-  setTrack (trackId, setByKeyboard) {
+  setTrack (trackId) {
     const
       t = this,
       radios = t.captionsButton.querySelectorAll('input[type="radio"]'),
@@ -478,12 +475,6 @@ Object.assign(MediaElementPlayer.prototype, {
     const event = createEvent('captionschange', t.media);
     event.detail.caption = t.selectedTrack;
     t.media.dispatchEvent(event);
-
-    if (!setByKeyboard) {
-      setTimeout(function() {
-        t.getElement(t.container).focus();
-      }, 500);
-    }
   },
 
   /**
