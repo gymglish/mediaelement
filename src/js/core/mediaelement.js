@@ -412,16 +412,21 @@ class MediaElement {
 				t.mediaElement[methodName] = (...args) => {
 					if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null &&
 						typeof t.mediaElement.renderer[methodName] === 'function') {
-						if (t.mediaElement.promises.length) {
-							return Promise.all(t.mediaElement.promises).then(() => {
+						const response = t.mediaElement.promises.length ?
+							Promise.all(t.mediaElement.promises).then(() => {
 								return triggerAction(methodName, args);
 							}).catch((e) => {
 								t.mediaElement.generateError(e, mediaFiles);
 								return Promise.reject(e);
-							});
-						} else {
-							return triggerAction(methodName, args);
+							}) :
+							triggerAction(methodName, args);
+						// The player never handles the promise returned by play(), so its rejections (autoplay blocked,
+						// play interrupted by pause/load, source failed to load) surface as unhandled rejections.
+						// Mark them as handled; callers can still catch the returned promise.
+						if (methodName === 'play' && response && typeof response.catch === 'function') {
+							response.catch(() => {});
 						}
+						return response;
 					}
 					return null;
 				};
