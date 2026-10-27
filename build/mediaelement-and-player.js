@@ -993,16 +993,17 @@ var MediaElement = function MediaElement(idOrNode, options, sources) {
 			}
 
 			if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null && typeof t.mediaElement.renderer[methodName] === 'function') {
-				if (t.mediaElement.promises.length) {
-					return Promise.all(t.mediaElement.promises).then(function () {
-						return triggerAction(methodName, args);
-					}).catch(function (e) {
-						t.mediaElement.generateError(e, mediaFiles);
-						return Promise.reject(e);
-					});
-				} else {
+				var response = t.mediaElement.promises.length ? Promise.all(t.mediaElement.promises).then(function () {
 					return triggerAction(methodName, args);
+				}).catch(function (e) {
+					t.mediaElement.generateError(e, mediaFiles);
+					return Promise.reject(e);
+				}) : triggerAction(methodName, args);
+
+				if (methodName === 'play' && response && typeof response.catch === 'function') {
+					response.catch(function () {});
 				}
+				return response;
 			}
 			return null;
 		};
